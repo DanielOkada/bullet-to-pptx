@@ -1,5 +1,6 @@
 from pptx import Presentation
 from pptx.enum.lang import MSO_LANGUAGE_ID
+from datetime import date
 
 
 def parse_hierarchical_text(text):
@@ -69,6 +70,7 @@ def create_presentation(hierarchy, template_path, output_path):
 
     for item, sub_items in hierarchy:
         # 新しいスライドを追加
+        # テンプレートによってレイアウトの種類や順序が異なる場合がある
         slide = prs.slides.add_slide(prs.slide_layouts[2])
         slide.shapes.title.text = item
 
@@ -84,7 +86,8 @@ def create_presentation(hierarchy, template_path, output_path):
 def main():
     input_file = "input.txt"
     template_file = "template.pptx"
-    output_file = "out/example.pptx"
+    today = date.today()
+    output_file = f"out/ゼミ{today}.pptx"
 
     # 入力ファイルを読み込む
     with open(input_file, encoding="utf-8") as f:
