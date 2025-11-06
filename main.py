@@ -9,13 +9,13 @@ def parse_hierarchical_text(text):
     :param text: 入力テキスト
     :return: 階層構造を表すリスト
     """
-    lines = text.strip().split('\n')
+    lines = text.strip().split("\n")
     result = []
     stack = [(-1, result)]
 
     for line in lines:
         indent = len(line) - len(line.lstrip())
-        content = line.strip('- ').strip()
+        content = line.strip("- ").strip()
 
         # 現在の行のインデントレベルに基づいてスタックを調整
         while stack and indent <= stack[-1][0]:
@@ -71,7 +71,7 @@ def create_presentation(hierarchy, template_path, output_path):
     for item, sub_items in hierarchy:
         # 新しいスライドを追加
         # テンプレートによってレイアウトの種類や順序が異なる場合がある
-        slide = prs.slides.add_slide(prs.slide_layouts[2])
+        slide = prs.slides.add_slide(prs.slide_layouts[2])  # slide_layouts[#]を調整する
         slide.shapes.title.text = item
 
         # 本文を追加
