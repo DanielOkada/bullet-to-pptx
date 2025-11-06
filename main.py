@@ -93,6 +93,8 @@ def main():
     with open(input_file, encoding="utf-8") as f:
         text = f.read()
 
+    # 空行を削除
+    text = "\n".join([line for line in text.splitlines() if line.strip() != ""])
     # テキストを解析し、階層構造を作成
     hierarchy = parse_hierarchical_text(text)
 
